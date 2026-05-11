@@ -288,6 +288,10 @@
             // Stack is empty → TryPop() returns false instead of throwing exception
 
             #endregion
+            static void Print(HashSet<int> set)
+            {
+                Console.WriteLine(string.Join(", ", set));
+            }
 
 
         }
