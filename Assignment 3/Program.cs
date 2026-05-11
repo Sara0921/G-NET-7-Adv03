@@ -206,6 +206,47 @@
             Console.WriteLine($"\nIs {{1,2}} subset of A? {isSubset}");
 
             #endregion
+            #region Exercise 05
+
+            // Create queue
+            Queue<string> printQueue = new();
+
+            // Enqueue documents
+            printQueue.Enqueue("Report.pdf");
+            printQueue.Enqueue("Invoice.pdf");
+            printQueue.Enqueue("Letter.docx");
+            printQueue.Enqueue("Resume.pdf");
+            printQueue.Enqueue("Photo.jpg");
+
+            // Print queue contents
+            Console.WriteLine("Queue Contents:");
+            Console.WriteLine(string.Join(", ", printQueue));
+
+            Console.WriteLine($"Count: {printQueue.Count}");
+
+            // Peek (next document)
+            Console.WriteLine($"\nNext to print (Peek): {printQueue.Peek()}");
+
+            // Process queue
+            Console.WriteLine("\nProcessing Queue:");
+            while (printQueue.Count > 0)
+            {
+                string doc = printQueue.Dequeue();
+                Console.WriteLine($"Printing: {doc}");
+            }
+
+            // TryDequeue on empty queue
+            Console.WriteLine("\nTrying TryDequeue on empty queue:");
+            bool success = printQueue.TryDequeue(out string? result);
+
+            Console.WriteLine($"Success? {success}");
+            Console.WriteLine($"Result: {result ?? "null"}");
+
+            // TryDequeue behaviour on Empty Queue
+            // Queue is empty → nothing to remove
+            // TryDequeue() returns false instead of crashing and result becomes null
+
+            #endregion
 
 
         }
