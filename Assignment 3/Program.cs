@@ -94,7 +94,66 @@
             }
 
             #endregion
+            #region Exercise 03
 
+            // Create phone book
+            Dictionary<string, string> phoneBook = new()
+            {
+                {"Ahmed", "01012345678"},
+                {"Sara", "01198765432"},
+                {"Ali", "01255555555"},
+                {"Mona", "01544444444"}
+            };
+
+
+            // Add or update using []
+            phoneBook["Omar"] = "01000000000";   // Add
+            phoneBook["Ahmed"] = "01099999999"; // Update
+
+            Console.WriteLine("After [] add/update:");
+            Print(phoneBook);
+
+            try
+            {
+                phoneBook.Add("Sara", "00000000000"); // duplicate key
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError using Add(): {ex.Message}");
+            }
+
+            // Try adding duplicate using TryAdd()
+            bool added = phoneBook.TryAdd("Ali", "00000000000");
+            Console.WriteLine($"\nTryAdd for 'Ali' succeeded? {added}");
+
+            // Search for a contact that doesn't exist
+            string searchName = "Youssef";
+            if (!phoneBook.ContainsKey(searchName))
+            {
+                Console.WriteLine($"\n{searchName} not found");
+            }
+
+            // Get contact with fallback
+            string result = phoneBook.TryGetValue(searchName, out string? phone)
+                ? phone : "Not Found";
+
+            Console.WriteLine($"Result for {searchName}: {result}");
+
+            // Print all keys in one line
+            Console.WriteLine("\nAll Names:");
+            Console.WriteLine(string.Join(", ", phoneBook.Keys));
+
+            // Print all values in one line
+            Console.WriteLine("\nAll Phone Numbers:");
+            Console.WriteLine(string.Join(", ", phoneBook.Values));
+        }
+
+        static void Print(Dictionary<string, string> phoneBook)
+        {
+            foreach (var entry in phoneBook)
+                Console.WriteLine($"{entry.Key} → {entry.Value}");
+
+            #endregion
 
         }
     }
