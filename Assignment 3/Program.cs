@@ -247,6 +247,47 @@
             // TryDequeue() returns false instead of crashing and result becomes null
 
             #endregion
+            #region Exercise 06
+
+            // Create browser history stack
+            Stack<string> history = new();
+
+            // Push URLs
+            history.Push("google.com");
+            history.Push("github.com");
+            history.Push("stackoverflow.com");
+            history.Push("youtube.com");
+            history.Push("claude.ai");
+
+            // Peek current page
+            Console.WriteLine($"Current Page: {history.Peek()}");
+
+            // Go back 3 times
+            Console.WriteLine("\nGoing Back:");
+            for (int i = 0; i < 3; i++)
+            {
+                string leftPage = history.Pop();
+                Console.WriteLine($"Leaving: {leftPage}");
+            }
+
+            // Current page after going back
+            Console.WriteLine($"\nCurrent Page after back: {history.Peek()}");
+
+            // Empty the stack completely
+            while (history.Count > 0)
+            {
+                history.Pop();
+            }
+
+            // TryPop on empty stack
+            Console.WriteLine("\nTrying TryPop on empty stack:");
+            bool success06 = history.TryPop(out string? result06);
+
+            Console.WriteLine($"Success? {success06}");
+            Console.WriteLine($"Result: {result06 ?? "null"}");
+            // Stack is empty → TryPop() returns false instead of throwing exception
+
+            #endregion
 
 
         }
