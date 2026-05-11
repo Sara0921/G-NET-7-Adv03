@@ -54,6 +54,47 @@
             }
 
             #endregion
+            #region Exercise 02 
+
+            // Create leaderboard (sorted by score automatically)
+            SortedDictionary<int, string> leaderboard = new()
+            {
+                {500, "Ahmed"},
+                {200, "Sara"},
+                {800, "Ali"},
+                {350, "Mona"}
+            };
+
+            // Print all entries
+            Console.WriteLine("Leaderboard:");
+            foreach (var entry in leaderboard)
+                Console.WriteLine($"Score: {entry.Key}, Player: {entry.Value}");
+
+            // First key and first value - Using LINQ First() - O(log n) + enumeration overhead
+            Console.WriteLine($"\nFirst Score: {leaderboard.First().Key}");
+            Console.WriteLine($"First Player: {leaderboard.First().Value}");
+
+            // Check if score 500 exists
+            bool exists = leaderboard.ContainsKey(500);
+            Console.WriteLine($"\nScore 500 exists? {exists}");
+
+            // Safely get player with score 999
+            if (leaderboard.TryGetValue(999, out string? player))
+                Console.WriteLine($"Player with score 999: {player}");
+            else
+                Console.WriteLine("Score 999 not found");
+
+            // Remove score 200
+            leaderboard.Remove(200);
+
+            Console.WriteLine("\nAfter removing score 200:");
+            foreach (var entry in leaderboard)
+            {
+                Console.WriteLine($"Score: {entry.Key}, Player: {entry.Value}");
+            }
+
+            #endregion
+
 
         }
     }
