@@ -154,6 +154,59 @@
                 Console.WriteLine($"{entry.Key} → {entry.Value}");
 
             #endregion
+            #region Exercise 04
+
+            // Case-insensitive email set
+            HashSet<string> emails = new(StringComparer.OrdinalIgnoreCase)
+            {
+                "ahmed@test.com",
+                "AHMED@test.com",
+                "sara@test.com",
+                "Sara@Test.Com"
+            };
+
+            // Print count
+            Console.WriteLine($"Email Count: {emails.Count}");
+
+            Console.WriteLine("Stored Emails:");
+            foreach (var email in emails)
+            {
+                Console.WriteLine(email);
+            }
+
+            // Explanation
+            Console.WriteLine("\nExplanation:");
+            Console.WriteLine("HashSet ignores duplicates. Case-insensitive comparer treats emails as the same.");
+
+            // Sets A and B
+            HashSet<int> setA = [1, 2, 3, 4, 5];
+            HashSet<int> setB = [4, 5, 6, 7, 8];
+
+            // Union
+            var union = new HashSet<int>(setA);
+            union.UnionWith(setB);
+            Console.WriteLine("\nUnion:");
+            Print(union);
+
+            // Intersection
+            HashSet<int>? intersect = [.. setA];
+            intersect.IntersectWith(setB);
+            Console.WriteLine("\nIntersection:");
+            Print(intersect);
+
+            // Except
+            HashSet<int>? except = [.. setA];
+            except.ExceptWith(setB);
+            Console.WriteLine("\nExcept (A - B):");
+            Print(except);
+
+            // Subset check
+            HashSet<int> smallSet = [1, 2];
+            bool isSubset = smallSet.IsSubsetOf(setA);
+            Console.WriteLine($"\nIs {{1,2}} subset of A? {isSubset}");
+
+            #endregion
+
 
         }
     }
